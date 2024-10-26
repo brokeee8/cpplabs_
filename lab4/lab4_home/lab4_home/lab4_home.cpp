@@ -1,34 +1,9 @@
 ﻿#include <iostream>
 #include <Windows.h>
+#include "Characteristic.h"
+#include "Weapon.h"
+#include "MyMath.h"
 using namespace std;
-
-class Weapon {
-public:
-    string name;
-    float damage;
-    float weight;
-
-    Weapon(string name, float damage, float weight) : name(name), damage(damage), weight(weight) {}
-
-    Weapon() : Weapon("Weapon", 1, 1) {};
-
-    ~Weapon() {
-        cout << "Объект " << name << " удаляется." << endl;
-    }
-
-    bool weightCheck(int maxWeight) const {
-        return weight > maxWeight;
-    }
-    
-    float weightSum(const Weapon& other) const{
-        return weightSum(other.weight);
-    }
-    float weightSum(float otherWeight) const {
-        return weight + otherWeight;
-    }
-};
-
-
 
 
 int main()
@@ -46,30 +21,51 @@ int main()
 
 
     Weapon shotgun("Shotgun", 25, 10);
-    cout << shotgun.name << " " << shotgun.damage << " " << shotgun.weight << endl;
+    cout << shotgun.getName() << " " << shotgun.getDamage() << " " << shotgun.getWeight() << endl;
 
     Weapon* sword = new Weapon("Sword", 8, 6);
-    cout << sword->name << " " << sword->damage << " " << sword->weight << endl;
+    cout << sword->getName() << " " << sword->getDamage() << " " << sword->getWeight() << endl;
 
     int maxWeight = 7;
 
     if (shotgun.weightCheck(maxWeight)) {
-        cout << "Не сможет поднять оружие " << shotgun.name << endl;
+        cout << "Не сможет поднять оружие " << shotgun.getName() << endl;
     }
     else {
-        cout << "Сможет поднять оружие" << shotgun.name << endl;
+        cout << "Сможет поднять оружие" << shotgun.getName() << endl;
     }
 
     if (sword->weightCheck(maxWeight)) {
-        cout << "Не сможет поднять оружие " << sword->name << endl;
+        cout << "Не сможет поднять оружие " << sword->getName() << endl;
     }
     else {
-        cout << "Сможет поднять оружие " << sword->name << endl;
+        cout << "Сможет поднять оружие " << sword->getName() << endl;
     }
     
     cout << "Суммарный вес Shotgun и Sword " << shotgun.weightSum(*sword) << endl;
     cout << "Суммарный вес Shotgun и ... " << shotgun.weightSum(15) << endl;
     
+    cout << "Shotgun damage: " << shotgun.getDamage() << endl;
+    shotgun.setDamage(12);
+    cout << "Shotgun new damage: " << shotgun.getDamage() << endl;
+
+    Weapon crossbow("Crossbow", 7, 2);
+    Characteristic charac(3);
+
+    cout << "Sword урон: " << sword->getDamage() << endl;
+    float newDamage = charac.getDamage(*sword);
+    cout << "Суммарный урон: " << newDamage << endl;
+
+
+    float z = 34;
+    float y = 21;
+    cout << "Z = " << z << " Y = " << y << endl;
+    cout << "Add: " << MyMath::Add(z, y) << endl;
+    cout << "Sub: " << MyMath::Sub(z, y) << endl;
+    cout << "Mult: " << MyMath::Mult(z, y) << endl;
+    cout << "Div: " << MyMath::Div(z, y) << endl;
+    cout << "Всего операций: " << MyMath::getOperation() << endl;
+
     delete sword;
 }
 
