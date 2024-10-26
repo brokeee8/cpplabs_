@@ -69,7 +69,7 @@ int main()
     
     cout << "Суммарный вес Shotgun и Sword " << shotgun.weightSum(*sword) << endl;
     cout << "Суммарный вес Shotgun и ... " << shotgun.weightSum(15) << endl;
-
+    
     delete sword;
 }
 
