@@ -32,6 +32,8 @@ public:
     float weightSum(const Weapon& other);
     float weightSum(float otherWeight);
 
+    virtual void attack() = 0;
+
 
     bool operator>(Weapon& other);
     bool operator<(Weapon& other);

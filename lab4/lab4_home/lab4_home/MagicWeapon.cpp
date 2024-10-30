@@ -28,3 +28,8 @@ float MagicWeapon::getDamage()
 {
 	return (damage+addDamage);
 }
+
+void MagicWeapon::attack()
+{
+	cout << "Атакуем магическим оружием" << endl;
+}

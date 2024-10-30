@@ -36,7 +36,7 @@ int main()
     //cout << w.name << " " << w.damage << " " << w.weight << endl;
 
 
-    Weapon shotgun("Shotgun", 25, 10, weaponType::TWOHANDED);
+    /*Weapon shotgun("Shotgun", 25, 10, weaponType::TWOHANDED);
     cout << shotgun.getName() << " " << shotgun.getDamage() << " " << shotgun.getWeight() << endl;
 
     Weapon* sword = new Weapon("Sword", 8, 6, weaponType::ONEHANDED);
@@ -116,7 +116,9 @@ int main()
     }
 
 
-    delete sword;
-
+    delete sword;*/
+    MagicWeapon staff("Wizard staff", 12, 2, weaponType::ONEHANDED, 3);
+    cout << staff.getName() << endl;
+    staff.attack();
 }
 

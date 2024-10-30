@@ -11,5 +11,6 @@ public:
 	float getAddDamage();
 	void print() override;
 	float getDamage() override;
+	void attack();
 };					
 
