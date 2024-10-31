@@ -154,6 +154,8 @@ int main()
 
 
     delete sword;*/
+
+
     MagicWeapon staff("Wizard staff", 12, 2, weaponType::ONEHANDED, 3);
     cout << staff.getName() << endl;
     staff.attack();
