@@ -4,6 +4,7 @@
 #include "Weapon.h"
 #include "MyMath.h"
 #include "MagicWeapon.h"
+#include "DisWeapon.h"
 using namespace std;
 
 
@@ -17,6 +18,42 @@ struct player {
 
     
 };
+
+
+template <typename LeftWeaponType, typename RightWeaponType>
+class WeaponHolder {
+public:
+    WeaponHolder(LeftWeaponType leftWeapon, RightWeaponType rightWeapon): leftWeapon(leftWeapon), rightWeapon(rightWeapon) {}
+
+    LeftWeaponType getLeftWeapon() const { return leftWeapon; }
+    RightWeaponType getRightWeapon() const { return rightWeapon; }
+
+    void setLeftWeapon(LeftWeaponType weapon) { leftWeapon = weapon; }
+    void setRightWeapon(RightWeaponType weapon) { rightWeapon = weapon; }
+
+    void useLeftWeapon() {
+        std::cout << "Используем левое оружие: ";
+        leftWeapon.attack();
+    }
+
+    void useRightWeapon() {
+        std::cout << "Используем правое оружие: ";
+        rightWeapon.attack();
+    }
+
+private:
+    LeftWeaponType leftWeapon;   // Оружие в левой руке
+    RightWeaponType rightWeapon; // Оружие в правой руке
+};
+
+
+
+
+
+
+
+
+
 void getData(player& player) {
         cout << "ID: " << player.id << endl;
         cout << "Login: " << player.login << endl;
@@ -120,5 +157,30 @@ int main()
     MagicWeapon staff("Wizard staff", 12, 2, weaponType::ONEHANDED, 3);
     cout << staff.getName() << endl;
     staff.attack();
+
+    DisWeapon grenade("Grenade", 8, 1, weaponType::ONEHANDED);
+    DisWeapon smoke("Smoke", 0, 1, weaponType::ONEHANDED);
+    grenade.attack();
+    grenade.attack();
+
+
+    WeaponHolder<DisWeapon, DisWeapon> weaponHolder(grenade, smoke);
+
+    weaponHolder.useLeftWeapon();  // Используем левое оружие (граната)
+    weaponHolder.useRightWeapon(); // Используем правое оружие (дымовая шашка)
+
+  
+    std::cout << "Левое оружие: " << weaponHolder.getLeftWeapon().getName() << std::endl;
+    std::cout << "Правое оружие: " << weaponHolder.getRightWeapon().getName() << std::endl;
+
+    DisWeapon newWeapon("Новое оружие", 15, 5, weaponType::ONEHANDED);
+    weaponHolder.setLeftWeapon(newWeapon);
+    weaponHolder.useLeftWeapon(); 
+
+    
+    WeaponHolder<int, int> idHolder(1, 2); 
+    std::cout << "ID левого оружия: " << idHolder.getLeftWeapon() << std::endl;
+    std::cout << "ID правого оружия: " << idHolder.getRightWeapon() << std::endl;
+
 }
 
